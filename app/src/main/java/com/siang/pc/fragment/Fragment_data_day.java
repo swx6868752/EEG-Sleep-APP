@@ -28,10 +28,10 @@ import java.util.TimerTask;
  * Created by siang on 2018/10/6.
  */
 
-public class DayFragment extends Fragment {
+public class Fragment_data_day extends Fragment {
     Timer timer = new Timer();
 
-    private PieChart picChart;
+    private PieChart pieChart;
 
     private List<Integer> datas = new ArrayList<Integer>();
 
@@ -41,7 +41,7 @@ public class DayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO Auto-generated method stub
-        View v = inflater.inflate(R.layout.day_layout, container,false);
+        View v = inflater.inflate(R.layout.layout_data_day, container,false);
         setPieMap(v);
         loadDatas();
         simulator();
@@ -89,7 +89,7 @@ public class DayFragment extends Fragment {
     }
 
     protected void setPieMap(View v) {
-        picChart = v.findViewById(R.id.pic_chart);
+        pieChart = v.findViewById(R.id.piechart_day);
 
         List<PieEntry> strings = new ArrayList<>();
         strings.add(new PieEntry(20f,"stage1"));
@@ -99,7 +99,6 @@ public class DayFragment extends Fragment {
         strings.add(new PieEntry(20f,"REM"));
 
         PieDataSet dataSet = new PieDataSet(strings,"Label");
-
 
         ArrayList<Integer> colors = new ArrayList<Integer>();
         colors.add(getResources().getColor(R.color.stage1));
@@ -114,17 +113,17 @@ public class DayFragment extends Fragment {
         pieData.setValueFormatter(new PercentFormatter());
         pieData.setValueTextSize(12f);
 
-        picChart.setData(pieData);
-        picChart.invalidate();
+        pieChart.setData(pieData);
+        pieChart.invalidate();
 
         Description description = new Description();
         description.setText("");
-        picChart.setDescription(description);
-        picChart.setEntryLabelColor(Color.parseColor("#000000"));
-        picChart.getLegend().setEnabled(false);
-        picChart.setCenterText("Good");
-        picChart.setCenterTextSize(30f);
-        picChart.setCenterTextColor(Color.parseColor("#66BAB7"));
+        pieChart.setDescription(description);
+        pieChart.setEntryLabelColor(Color.parseColor("#000000"));
+        pieChart.getLegend().setEnabled(false);
+        pieChart.setCenterText("Good");
+        pieChart.setCenterTextSize(30f);
+        pieChart.setCenterTextColor(Color.parseColor("#66BAB7"));
     }
 }
 

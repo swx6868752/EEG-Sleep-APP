@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.siang.pc.sleep.MainActivity">
+    tools:context="com.siang.pc.sleep.Activity_main_data">
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/draw"
@@ -18,7 +18,7 @@
 
             <include
                 android:id="@+id/include4"
-                layout="@layout/analyse_top_bar_layout" />
+                layout="@layout/top_bart_analyse" />
 
 
             <android.support.v4.view.ViewPager
@@ -52,7 +52,7 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/nav_header_navi"
-            app:menu="@menu/activity_drawer_layout"/>
+            app:menu="@menu/activity_drawer_menu"/>
 
     </android.support.v4.widget.DrawerLayout>
 

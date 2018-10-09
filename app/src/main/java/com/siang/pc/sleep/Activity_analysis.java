@@ -1,51 +1,35 @@
 package com.siang.pc.sleep;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.data.*;
-import com.github.mikephil.charting.formatter.PercentFormatter;
 
-import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import com.siang.pc.adapter.MyFragmentPagerAdapter;
-import com.siang.pc.fragment.DayFragment;
-import com.siang.pc.fragment.SleepTipsFragment;
-import com.siang.pc.fragment.WeekFragment;
-import com.siang.pc.fragment.YourSleepFragment;
-import com.siang.pc.view.EcgView;
+import com.siang.pc.adapter.FragmentPagerAdapter_main;
+import com.siang.pc.fragment.Fragment_tips;
+import com.siang.pc.fragment.Fragment_analysis;
 
-public class AnalysisActivity extends FragmentActivity implements View.OnClickListener,ViewPager.OnPageChangeListener {
+public class Activity_analysis extends FragmentActivity implements View.OnClickListener,ViewPager.OnPageChangeListener {
     private PieChart picChart;
 
     private List<Integer> datas = new ArrayList<Integer>();
@@ -56,8 +40,8 @@ public class AnalysisActivity extends FragmentActivity implements View.OnClickLi
 
     private ViewPager myviewpager;
     //选项卡中的按钮
-    private Button btn_your_sleep;
-    private Button btn_sleep_tips;
+    private Button btnYourSleep;
+    private Button btnSleepTips;
     //作为指示标签的按钮
     private Button cursor;
     //所有标题按钮的数组
@@ -98,7 +82,7 @@ public class AnalysisActivity extends FragmentActivity implements View.OnClickLi
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.nav_data_collection:
-                        Intent intent = new Intent(AnalysisActivity.this, MainActivity.class);
+                        Intent intent = new Intent(Activity_analysis.this, Activity_main_data.class);
                         startActivity(intent);
                         break;
                     case R.id.nav_analysis_advices:
@@ -128,9 +112,9 @@ public class AnalysisActivity extends FragmentActivity implements View.OnClickLi
 
     public void buildFragmentAdapter() {
         fragments = new ArrayList<Fragment>();
-        fragments.add(new YourSleepFragment());
-        fragments.add(new SleepTipsFragment());
-        MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(),fragments);
+        fragments.add(new Fragment_analysis());
+        fragments.add(new Fragment_tips());
+        FragmentPagerAdapter_main adapter = new FragmentPagerAdapter_main(getSupportFragmentManager(),fragments);
         myviewpager.setAdapter(adapter);
         myviewpager.setOffscreenPageLimit(2);
     }
@@ -139,19 +123,19 @@ public class AnalysisActivity extends FragmentActivity implements View.OnClickLi
     public void initView(){
         myviewpager = (ViewPager)this.findViewById(R.id.myviewpager);
 
-        btn_your_sleep = (Button)this.findViewById(R.id.btn_your_sleep);
-        btn_sleep_tips = (Button)this.findViewById(R.id.btn_sleep_tips);
+        btnYourSleep = (Button)this.findViewById(R.id.btn_your_sleep);
+        btnSleepTips = (Button)this.findViewById(R.id.btn_sleep_tips);
 
-        btn_your_sleep.setTypeface(null, Typeface.NORMAL);
-        btn_sleep_tips.setTypeface(null, Typeface.NORMAL);
+        btnYourSleep.setTypeface(null, Typeface.NORMAL);
+        btnSleepTips.setTypeface(null, Typeface.NORMAL);
         //初始化按钮数组
-        btnArgs = new Button[]{btn_your_sleep,btn_sleep_tips};
+        btnArgs = new Button[]{btnYourSleep, btnSleepTips};
         //指示标签设置为加粗
-        cursor = btn_your_sleep;
+        cursor = btnYourSleep;
         cursor.setTypeface(null, Typeface.BOLD);
 
-        btn_your_sleep.setOnClickListener(this);
-        btn_sleep_tips.setOnClickListener(this);
+        btnYourSleep.setOnClickListener(this);
+        btnSleepTips.setOnClickListener(this);
 
     }
     @Override
@@ -168,9 +152,6 @@ public class AnalysisActivity extends FragmentActivity implements View.OnClickLi
             case R.id.top_account:
                 drawerLayout.openDrawer(Gravity.LEFT);
                 break;
-            /*case R.id.imgButtonBack:
-                drawerLayout.closeDrawer(Gravity.LEFT);
-                break;*/
         }
     }
 

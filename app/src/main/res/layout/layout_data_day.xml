@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textView_wave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -54,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
         <TextView
-            android:id="@+id/timeTitle"
+            android:id="@+id/textView_stageTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -73,47 +73,47 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/textView_stage1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/stage1"
             android:textColor="@color/stage1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/timeTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_stageTime" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/textView_stage2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/stage2"
             android:textColor="@color/stage2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_stage1" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/textView_analysis1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/stage3"
             android:textColor="@color/stage3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_stage2" />
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/textView_advice2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/stage4"
             android:textColor="@color/stage4"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_analysis1" />
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/textView_stageHour1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -124,7 +124,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/textView_stageHour2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -132,10 +132,10 @@
             android:text="@string/onehour"
             android:textColor="@color/stage2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_stageHour1" />
 
         <TextView
-            android:id="@+id/textView17"
+            android:id="@+id/textView_stageHour3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -143,10 +143,10 @@
             android:text="@string/onehour"
             android:textColor="@color/stage3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_stageHour2" />
 
         <TextView
-            android:id="@+id/textView18"
+            android:id="@+id/textView_stageHour4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -154,20 +154,20 @@
             android:text="@string/onehour"
             android:textColor="@color/stage4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView17" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_stageHour3" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textView_stageREM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/rem"
             android:textColor="@color/REM"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_advice2" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textView_stageHourREM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -175,28 +175,28 @@
             android:text="@string/onehour"
             android:textColor="@color/REM"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_stageHour4" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textView_totalTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/total"
             android:textColor="@color/centerText"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_stageREM" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textView_stageHourTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
             android:text="@string/fivehour"
             android:textColor="@color/centerText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_stageHourREM" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -212,7 +212,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
         <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/pic_chart"
+            android:id="@+id/piechart_day"
             android:layout_width="180dp"
             android:layout_height="180dp"
             app:layout_constraintBottom_toBottomOf="parent"

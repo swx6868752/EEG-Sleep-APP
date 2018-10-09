@@ -18,7 +18,6 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.siang.pc.sleep.R;
 
@@ -29,18 +28,18 @@ import java.util.ArrayList;
  * Created by siang on 2018/10/6.
  */
 
-public class WeekFragment extends Fragment {
+public class Fragment_data_month extends Fragment {
 
     private BarChart mBarChart;
     protected String[] values = new String[]{
-            "09/01", "09/02", "09/03", "09/04", "09/05", "09/06", "09/07"
+            "BAD", "WELL", "GOOD"
     };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO Auto-generated method stub
-        View v = inflater.inflate(R.layout.week_layout, container,false);
-        mBarChart = v.findViewById(R.id.WeekBarChart);
+        View v = inflater.inflate(R.layout.layout_data_month, container,false);
+        mBarChart = v.findViewById(R.id.BarChart_month);
         setBarChart();
         setDatas();
         return v;
@@ -49,19 +48,15 @@ public class WeekFragment extends Fragment {
     public void setDatas() {
         ArrayList<BarEntry> yVals = new ArrayList<BarEntry>();
 
-        yVals.add(new BarEntry(0, 6f));
-        yVals.add(new BarEntry(1, 8f));
-        yVals.add(new BarEntry(2, 7.1f));
-        yVals.add(new BarEntry(3, 8.3f));
-        yVals.add(new BarEntry(4, 6.5f));
-        yVals.add(new BarEntry(5, 4.9f));
-        yVals.add(new BarEntry(6, 7f));
+        yVals.add(new BarEntry(0, 7f));
+        yVals.add(new BarEntry(1, 12f));
+        yVals.add(new BarEntry(2, 10f));
 
         HourFormatter hourformatter = new HourFormatter();
         BarDataSet set;
         set = new BarDataSet(yVals, "Time");
         //设置多彩 也可以单一颜色
-        set.setColors(new int[]{Color.parseColor("#9ED874"), Color.parseColor("#61C9B5"), Color.parseColor("#61C9B5"), Color.parseColor("#1F7D6B"), Color.parseColor("#61C9B5"), Color.parseColor("#9ED874"), Color.parseColor("#1F7D6B")});
+        set.setColors(new int[]{Color.parseColor("#9ED874"), Color.parseColor("#1F7D6B"), Color.parseColor("#61C9B5")});
         set.setDrawValues(true);
         set.setValueTextColor(Color.parseColor("#FFFFFF"));
         set.setValueFormatter(hourformatter);
@@ -84,19 +79,20 @@ public class WeekFragment extends Fragment {
         mBarChart.setPinchZoom(false);
         mBarChart.setDrawBarShadow(false);
         mBarChart.setDrawGridBackground(false);
-
+        mBarChart.setScaleEnabled(false);
+        mBarChart.setDoubleTapToZoomEnabled(false);
         MyXFormatter Xformatter = new MyXFormatter(values);
         XAxis xAxis = mBarChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.TOP);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawAxisLine(false);
         xAxis.setDrawGridLines(false);
+        xAxis.setLabelCount(3);
         xAxis.setTextColor(Color.parseColor("#FFFFFF"));
         xAxis.setTextSize(8f);
         xAxis.setValueFormatter(Xformatter);
 
         YAxis ya =mBarChart.getAxisLeft();
         ya.setAxisMinimum(0);
-        ya.setSpaceTop(30f);
 
         mBarChart.getAxisLeft().setDrawGridLines(false);
         mBarChart.getAxisLeft().setEnabled(false);

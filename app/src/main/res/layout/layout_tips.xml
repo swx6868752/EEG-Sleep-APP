@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.v7.widget.AppCompatImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/imageButton1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
@@ -40,13 +40,16 @@
             tools:layout_editor_absoluteY="168dp" />
 
         <TextView
-            android:id="@+id/textView19"
+            android:id="@+id/textView_tips1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="6dp"
             android:text="@string/pic1"
-            android:textAlignment="viewStart"
+            android:textAlignment="textStart"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="18sp"
             tools:layout_editor_absoluteX="57dp"
             tools:layout_editor_absoluteY="24dp" />
 
@@ -85,12 +88,15 @@
             tools:layout_editor_absoluteY="16dp" />
 
         <TextView
-            android:id="@+id/textView20"
+            android:id="@+id/textView_tips2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/pic2"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="18sp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="6dp"
             tools:layout_editor_absoluteX="57dp"
             tools:layout_editor_absoluteY="176dp" />
     </android.support.v7.widget.CardView>
@@ -128,12 +134,15 @@
             tools:layout_editor_absoluteY="348dp" />
 
         <TextView
-            android:id="@+id/textView21"
+            android:id="@+id/textView_tips3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/pic3"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="18sp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="6dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

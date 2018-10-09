@@ -3,9 +3,7 @@ package com.siang.pc.sleep;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -15,47 +13,34 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.data.*;
-import com.github.mikephil.charting.formatter.PercentFormatter;
 
-import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import com.siang.pc.adapter.MyFragmentPagerAdapter;
-import com.siang.pc.fragment.DayFragment;
-import com.siang.pc.fragment.MonthFragment;
-import com.siang.pc.fragment.SleepTipsFragment;
-import com.siang.pc.fragment.WeekFragment;
-import com.siang.pc.fragment.YourSleepFragment;
-import com.siang.pc.view.EcgView;
+import com.siang.pc.adapter.FragmentPagerAdapter_main;
+import com.siang.pc.fragment.Fragment_data_day;
+import com.siang.pc.fragment.Fragment_data_month;
+import com.siang.pc.fragment.Fragment_tips;
+import com.siang.pc.fragment.Fragment_data_week;
+import com.siang.pc.fragment.Fragment_analysis;
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener,ViewPager.OnPageChangeListener {
+public class Activity_main_data extends FragmentActivity implements View.OnClickListener,ViewPager.OnPageChangeListener {
 
     //variable
-    private PieChart picChart;
+    private PieChart pieChart;
 
     private List<Integer> datas = new ArrayList<Integer>();
 
@@ -63,24 +48,24 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private int flag = 0;
 
-    private ViewPager myviewpager1;
-    private ViewPager myviewpager2;
+    private ViewPager myviewpagerData;
+    private ViewPager myviewpagerAnalysis;
     //选项卡中的按钮
-    private Button btn_day;
-    private Button btn_week;
-    private Button btn_month;
-    private Button btn_your_sleep;
-    private Button btn_sleep_tips;
-    private FloatingActionButton btn_bluetooth;
+    private Button btnDay;
+    private Button btnWeek;
+    private Button btnMonth;
+    private Button btnYourSleep;
+    private Button btnSleepTips;
+    private FloatingActionButton btnBluetooth;
     //作为指示标签的按钮
-    private Button cursor;
-    private Button cursor2;
+    private Button cursorData;
+    private Button cursorAnalysis;
     //所有标题按钮的数组
-    private Button[] btnArgs;
-    private Button[] btnArgs2;
+    private Button[] btnArgsData;
+    private Button[] btnArgs2Analysis;
     //fragment的集合，对应每个子页面
-    private ArrayList<Fragment> fragments;
-    private ArrayList<Fragment> fragments2;
+    private ArrayList<Fragment> fragmentsData;
+    private ArrayList<Fragment> fragmentsAnalysis;
 
     //通过include其他界面layout实现界面切换
     private View include1;
@@ -94,8 +79,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     //bluetooth
     private static final int REQUEST_ENABLE_BT=2;
     //check bluetooth
-    private int bluetoothResult;
-//    private ArrayAdapter bluetoothArrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,8 +88,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         setButton();
         initView();
         buildFragmentAdapter();
-        myviewpager1.addOnPageChangeListener(this);
-        myviewpager2.addOnPageChangeListener(this);
+        myviewpagerData.addOnPageChangeListener(this);
+        myviewpagerAnalysis.addOnPageChangeListener(this);
     }
 
     public void findView() {//唤起menu边栏的view
@@ -132,16 +115,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                         include1.setVisibility(View.VISIBLE);
                         include2.setVisibility(View.GONE);
                         include3.setVisibility(View.VISIBLE);
-                        myviewpager1.setVisibility(View.VISIBLE);
-                        myviewpager2.setVisibility(View.GONE);
+                        myviewpagerData.setVisibility(View.VISIBLE);
+                        myviewpagerAnalysis.setVisibility(View.GONE);
                         break;
                     case R.id.nav_analysis_advices:
                         include1.setVisibility(View.GONE);
                         include2.setVisibility(View.VISIBLE);
                         include3.setVisibility(View.GONE);
-                        myviewpager1.setVisibility(View.GONE);
-                        myviewpager2.setVisibility(View.VISIBLE);
-                        /*Intent intent = new Intent(MainActivity.this, AnalysisActivity.class);
+                        myviewpagerData.setVisibility(View.GONE);
+                        myviewpagerAnalysis.setVisibility(View.VISIBLE);
+                        /*Intent intent = new Intent(Activity_main_data.this, Activity_analysis.class);
                         startActivity(intent);*/
                         break;
                 }
@@ -169,82 +152,81 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     public void buildFragmentAdapter() {
         //data collection界面
-        fragments = new ArrayList<Fragment>();
-        fragments.add(new DayFragment());
-        fragments.add(new WeekFragment());
-        fragments.add(new MonthFragment());
-        MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(),fragments);
-        myviewpager1.setAdapter(adapter);
-        myviewpager1.setOffscreenPageLimit(2);//缓存页面数目
+        fragmentsData = new ArrayList<Fragment>();
+        fragmentsData.add(new Fragment_data_day());
+        fragmentsData.add(new Fragment_data_week());
+        fragmentsData.add(new Fragment_data_month());
+        FragmentPagerAdapter_main adapter = new FragmentPagerAdapter_main(getSupportFragmentManager(), fragmentsData);
+        myviewpagerData.setAdapter(adapter);
+        myviewpagerData.setOffscreenPageLimit(2);//缓存页面数目
         //analysis and advice界面
-        fragments2 = new ArrayList<Fragment>();
-        fragments2.add(new YourSleepFragment());
-        fragments2.add(new SleepTipsFragment());
-        MyFragmentPagerAdapter adapter2 = new MyFragmentPagerAdapter(getSupportFragmentManager(),fragments2);
-        myviewpager2.setAdapter(adapter2);
-        myviewpager2.setOffscreenPageLimit(2);
+        fragmentsAnalysis = new ArrayList<Fragment>();
+        fragmentsAnalysis.add(new Fragment_analysis());
+        fragmentsAnalysis.add(new Fragment_tips());
+        FragmentPagerAdapter_main adapter2 = new FragmentPagerAdapter_main(getSupportFragmentManager(), fragmentsAnalysis);
+        myviewpagerAnalysis.setAdapter(adapter2);
+        myviewpagerAnalysis.setOffscreenPageLimit(2);
     }
 
     //初始化布局
     public void initView(){
-        myviewpager1 = (ViewPager)this.findViewById(R.id.myviewpager_data);
+        myviewpagerData = (ViewPager)this.findViewById(R.id.myviewpager_data);
 
-        btn_day = (Button)this.findViewById(R.id.btn_day);
-        btn_week = (Button)this.findViewById(R.id.btn_week);
-        btn_month = (Button)this.findViewById(R.id.btn_month);
+        btnDay = (Button)this.findViewById(R.id.btn_day);
+        btnWeek = (Button)this.findViewById(R.id.btn_week);
+        btnMonth = (Button)this.findViewById(R.id.btn_month);
         //button字体样式设置
-        btn_day.setTypeface(null, Typeface.NORMAL);
-        btn_week.setTypeface(null, Typeface.NORMAL);
-        btn_month.setTypeface(null, Typeface.NORMAL);
+        btnDay.setTypeface(null, Typeface.NORMAL);
+        btnWeek.setTypeface(null, Typeface.NORMAL);
+        btnMonth.setTypeface(null, Typeface.NORMAL);
         //初始化按钮数组
-        btnArgs = new Button[]{btn_day,btn_week,btn_month};
+        btnArgsData = new Button[]{btnDay, btnWeek, btnMonth};
         //指示标签设置为加粗
-        cursor = btn_day;
-        cursor.setTypeface(null, Typeface.BOLD);
+        cursorData = btnDay;
+        cursorData.setTypeface(null, Typeface.BOLD);
 
-        btn_day.setOnClickListener(this);
-        btn_week.setOnClickListener(this);
-        btn_month.setOnClickListener(this);
+        btnDay.setOnClickListener(this);
+        btnWeek.setOnClickListener(this);
+        btnMonth.setOnClickListener(this);
 
-        myviewpager2 = (ViewPager)this.findViewById(R.id.myviewpager_analysis);
+        myviewpagerAnalysis = (ViewPager)this.findViewById(R.id.myviewpager_analysis);
 
-        btn_your_sleep = (Button)this.findViewById(R.id.btn_your_sleep);
-        btn_sleep_tips = (Button)this.findViewById(R.id.btn_sleep_tips);
+        btnYourSleep = (Button)this.findViewById(R.id.btn_your_sleep);
+        btnSleepTips = (Button)this.findViewById(R.id.btn_sleep_tips);
 
-        btn_your_sleep.setTypeface(null, Typeface.NORMAL);
-        btn_sleep_tips.setTypeface(null, Typeface.NORMAL);
+        btnYourSleep.setTypeface(null, Typeface.NORMAL);
+        btnSleepTips.setTypeface(null, Typeface.NORMAL);
         //初始化按钮数组
-        btnArgs2 = new Button[]{btn_your_sleep,btn_sleep_tips};
+        btnArgs2Analysis = new Button[]{btnYourSleep, btnSleepTips};
         //指示标签设置为加粗
-        cursor2 = btn_your_sleep;
-        cursor2.setTypeface(null, Typeface.BOLD);
+        cursorAnalysis = btnYourSleep;
+        cursorAnalysis.setTypeface(null, Typeface.BOLD);
 
-        btn_your_sleep.setOnClickListener(this);
-        btn_sleep_tips.setOnClickListener(this);
+        btnYourSleep.setOnClickListener(this);
+        btnSleepTips.setOnClickListener(this);
 
         //蓝牙连接按钮
-        btn_bluetooth=(FloatingActionButton)this.findViewById(R.id.floatingActionButton_bluetooth);
-        btn_bluetooth.setOnClickListener(this);
+        btnBluetooth =(FloatingActionButton)this.findViewById(R.id.floatingActionButton_bluetooth);
+        btnBluetooth.setOnClickListener(this);
 
     }
     @Override
-    public void onClick(View whichbtn) {
-        // TODO Auto-generated method stub
-        switch (whichbtn.getId()) {
+    public void onClick(View btnChoose) {
+        switch (btnChoose.getId()) {
             case R.id.btn_day:
-                myviewpager1.setCurrentItem(0);
+                myviewpagerData.setCurrentItem(0);
                 break;
             case R.id.btn_week:
-                myviewpager1.setCurrentItem(1);
+                myviewpagerData.setCurrentItem(1);
                 break;
             case R.id.btn_month:
-                myviewpager1.setCurrentItem(2);
+                myviewpagerData.setCurrentItem(2);
                 break;
             case R.id.btn_your_sleep:
-                myviewpager2.setCurrentItem(0);
+                myviewpagerAnalysis.setCurrentItem(0);
                 break;
             case R.id.btn_sleep_tips:
-                myviewpager2.setCurrentItem(1);
+                myviewpagerAnalysis.setCurrentItem(1);
                 break;
             case R.id.top_account:
                 drawerLayout.openDrawer(GravityCompat.START);
@@ -252,9 +234,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             case R.id.floatingActionButton_bluetooth:
                 Toast.makeText(this,"bluetooth connecting",Toast.LENGTH_SHORT).show();
                 bluetoothConnect();
-            /*case R.id.imgButtonBack:
-                drawerLayout.closeDrawer(Gravity.LEFT);
-                break;*/
         }
     }
 
@@ -272,20 +251,19 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     @Override
     public void onPageSelected(int arg0) {
-        // TODO Auto-generated method stub
-        if (myviewpager1.getVisibility() == View.VISIBLE) {
+        if (myviewpagerData.getVisibility() == View.VISIBLE) {
             //还原加粗
-            cursor.setTypeface(null, Typeface.NORMAL);
+            cursorData.setTypeface(null, Typeface.NORMAL);
             //设置加粗
-            cursor = btnArgs[arg0];
-            cursor.setTypeface(null, Typeface.BOLD);
+            cursorData = btnArgsData[arg0];
+            cursorData.setTypeface(null, Typeface.BOLD);
         }
         else {
             //还原加粗
-            cursor2.setTypeface(null, Typeface.NORMAL);
+            cursorAnalysis.setTypeface(null, Typeface.NORMAL);
             //设置加粗
-            cursor2 = btnArgs2[arg0];
-            cursor2.setTypeface(null, Typeface.BOLD);
+            cursorAnalysis = btnArgs2Analysis[arg0];
+            cursorAnalysis.setTypeface(null, Typeface.BOLD);
         }
     }
 

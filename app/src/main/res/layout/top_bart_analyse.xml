@@ -10,39 +10,26 @@
         android:layout_width="match_parent"
         android:layout_height="40dp">
 
-        <!--<ImageButton
-            android:id="@+id/top_account"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_toStartOf="@+id/top_textView"
-            android:background="@drawable/account"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />-->
-
         <TextView
-            android:id="@+id/top_textView"
+            android:id="@+id/textView_top"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/tahu_"
-            android:text="@string/Data"
+            android:text="@string/Analysis"
             android:textColor="@color/colorTitle"
-            android:textSize="28sp"
+            android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/top_line"
+            android:typeface="serif"
+            app:layout_constraintEnd_toStartOf="@+id/line_top"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/top_line"
+            app:layout_constraintStart_toEndOf="@+id/line_top"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/top_line"
+            android:id="@+id/line_top"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:layout_alignParentTop="true"
@@ -61,7 +48,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+id/id_tab_day"
+            android:id="@+id/tab_your_sleep"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -69,18 +56,18 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_day"
+                android:id="@+id/btn_your_sleep"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:text="@string/day"
+                android:text="@string/your_sleep"
                 android:textAllCaps="?android:attr/windowOverscan"
                 android:textSize="20sp" />
         </LinearLayout>
 
 
         <LinearLayout
-            android:id="@+id/id_tab_week"
+            android:id="@+id/tab_sleep_tips"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -88,29 +75,11 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_week"
+                android:id="@+id/btn_sleep_tips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:text="@string/week"
-                android:textAllCaps="?android:attr/windowOverscan"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/id_tab_month"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_month"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:text="@string/month"
+                android:text="@string/sleep_knowledge"
                 android:textAllCaps="?android:attr/windowOverscan"
                 android:textSize="20sp" />
         </LinearLayout>

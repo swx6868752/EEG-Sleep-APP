@@ -12,12 +12,12 @@ import com.siang.pc.sleep.R;
  * Created by siang on 2018/10/6.
  */
 
-public class SleepTipsFragment extends Fragment {
+public class Fragment_tips extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO Auto-generated method stub
-        View v = inflater.inflate(R.layout.sleep_tips_layout, container,false);
+        View v = inflater.inflate(R.layout.layout_tips, container,false);
         return v;
     }
 

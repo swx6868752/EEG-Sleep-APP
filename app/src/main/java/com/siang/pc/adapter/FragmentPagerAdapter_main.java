@@ -11,11 +11,11 @@ import java.util.List;
  * Created by siang on 2018/10/6.
  */
 
-public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
+public class FragmentPagerAdapter_main extends FragmentPagerAdapter {
     //存储所有的fragment
     private List<Fragment> list;
 
-    public MyFragmentPagerAdapter(FragmentManager fm, ArrayList<Fragment> list){
+    public FragmentPagerAdapter_main(FragmentManager fm, ArrayList<Fragment> list){
         super(fm);
         this.list = list;
     }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.siang.pc.sleep.MainActivity">
+    tools:context="com.siang.pc.sleep.Activity_main_data">
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/draw"
@@ -18,17 +18,17 @@
 
             <include
                 android:id="@+id/include_data"
-                layout="@layout/data_top_bar_layout"
+                layout="@layout/top_bar_data"
                 android:visibility="visible" />
 
             <include
                 android:id="@+id/include_analysis"
-                layout="@layout/analyse_top_bar_layout"
+                layout="@layout/top_bart_analyse"
                 android:visibility="gone" />
 
             <include
                 android:id="@+id/include_connect"
-                layout="@layout/bottom_bar_layout"
+                layout="@layout/bottom_bar"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -80,7 +80,7 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/nav_header_navi"
-            app:menu="@menu/activity_drawer_layout"/>
+            app:menu="@menu/activity_drawer_menu"/>
 
     </android.support.v4.widget.DrawerLayout>
 
@@ -91,7 +91,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.siang.pc.sleep.MainActivity">
+    tools:context="com.siang.pc.sleep.Activity_main_datan_data">
 
     <include
         android:id="@+id/include2"
@@ -99,7 +99,7 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/bottom_bar_layout"
+        layout="@layout/bottom_bar"
         android:layout_width="0dp"
         android:layout_height="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
