@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />-->
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/floatingActionButton_bluetooth"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"

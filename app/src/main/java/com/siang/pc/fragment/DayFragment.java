@@ -122,7 +122,6 @@ public class DayFragment extends Fragment {
         picChart.setDescription(description);
         picChart.setEntryLabelColor(Color.parseColor("#000000"));
         picChart.getLegend().setEnabled(false);
-
         picChart.setCenterText("Good");
         picChart.setCenterTextSize(30f);
         picChart.setCenterTextColor(Color.parseColor("#66BAB7"));

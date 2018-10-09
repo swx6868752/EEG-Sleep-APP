@@ -36,4 +36,6 @@
     <string name="sleep_mall">Sleep Mall</string>
     <string name="perceptual_evaluation">This month sleep is not very stable yet, username.</string>
     <string name="thoughtful_advice">After your busy work, let yourself sleep well. The body is the capital of struggle.</string>
+    //for variable settings
+    <!--<string name="round_corner_size">20dp</string>-->
 </resources>

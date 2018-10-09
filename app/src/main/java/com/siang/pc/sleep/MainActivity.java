@@ -1,10 +1,13 @@
 package com.siang.pc.sleep;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -20,9 +23,11 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
@@ -35,6 +40,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -47,6 +53,8 @@ import com.siang.pc.fragment.YourSleepFragment;
 import com.siang.pc.view.EcgView;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener,ViewPager.OnPageChangeListener {
+
+    //variable
     private PieChart picChart;
 
     private List<Integer> datas = new ArrayList<Integer>();
@@ -63,6 +71,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private Button btn_month;
     private Button btn_your_sleep;
     private Button btn_sleep_tips;
+    private FloatingActionButton btn_bluetooth;
     //作为指示标签的按钮
     private Button cursor;
     private Button cursor2;
@@ -81,6 +90,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     //private ImageButton imgButton2;
+
+    //bluetooth
+    private static final int REQUEST_ENABLE_BT=2;
+    //check bluetooth
+    private int bluetoothResult;
+//    private ArrayAdapter bluetoothArrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,11 +222,14 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         btn_your_sleep.setOnClickListener(this);
         btn_sleep_tips.setOnClickListener(this);
 
+        //蓝牙连接按钮
+        btn_bluetooth=(FloatingActionButton)this.findViewById(R.id.floatingActionButton_bluetooth);
+        btn_bluetooth.setOnClickListener(this);
+
     }
     @Override
     public void onClick(View whichbtn) {
         // TODO Auto-generated method stub
-
         switch (whichbtn.getId()) {
             case R.id.btn_day:
                 myviewpager1.setCurrentItem(0);
@@ -231,6 +249,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             case R.id.top_account:
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
+            case R.id.floatingActionButton_bluetooth:
+                Toast.makeText(this,"bluetooth connecting",Toast.LENGTH_SHORT).show();
+                bluetoothConnect();
             /*case R.id.imgButtonBack:
                 drawerLayout.closeDrawer(Gravity.LEFT);
                 break;*/
@@ -268,5 +289,31 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         }
     }
 
+    public void bluetoothConnect(){
+        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
+        if (mBluetoothAdapter == null) {
+            // Device does not support Bluetooth
+        }
+        //open bluetooth
+        if (!mBluetoothAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+//            if(onActivityResult(REQUEST_ENABLE_BT);)
+//            onActivityResult(REQUEST_ENABLE_BT,bluetoothResult,);
+        }
+
+        Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
+// If there are paired devices
+        //todo waiting for rebuild
+//        if (pairedDevices.size() > 0) {
+//            // Loop through paired devices
+//            String[] pairedDevicesString={};
+//            for (BluetoothDevice device : pairedDevices) {
+//                ArrayAdapter<String> mArrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1,pairedDevicesString);
+//                // Add the name and address to an array adapter to show in a ListView
+//                mArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+//            }
+//        }
+    }
 }
